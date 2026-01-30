@@ -11,29 +11,28 @@ function App() {
   const [starshipsData, setStarshipsData] = useState([])
   const [displayedStarships, setDisplayedStarships] = useState([])
 
-  const fetchData = async (starship) => {
-    const data = await starshipService.show(starship);
-    setStarshipsData((old) => [...old, {
-      name: data.name,
-      starship_class: data.starship_class,
-      manufacturer: data.manufacturer,
-      model: data.model
-    }
-    ])
-  }
-
   useEffect(() => {
-    fetchData("falcon")
+    const fetchData = async () => {
+      const starships = await starshipService.show();
+
+      setStarshipsData(starships);
+      setDisplayedStarships(starships);
+    };
+
+
+    fetchData();
   }, []);
-
-
 
 
 
 
   return (
     <>
-      <h1>Hello World!</h1>
+      <h1>Star Wars API</h1>
+      <h2>Search:</h2>
+      <StarshipSearch />
+      <h2>Starships</h2>
+      <StarshipList starshipsData={starshipsData} />
     </>
   )
 }

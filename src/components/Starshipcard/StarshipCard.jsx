@@ -1,8 +1,25 @@
 import React from 'react'
 
-const StarshipCard = () => {
+const StarshipCard = ({ starship }) => {
   return (
-    <div>StarshipCard</div>
+    <>
+      <ul>
+
+        <li>
+          {starship.name}
+        </li>
+
+        <li>Class: {starship.starship_class}
+        </li>
+
+        <li>Manufacturer: {starship.manufacturer}
+        </li>
+
+        <li>Model: {starship.model}
+        </li>
+
+      </ul>
+    </>
   )
 }
 
